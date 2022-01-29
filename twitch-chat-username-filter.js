@@ -7,6 +7,7 @@ const targetNode = document.querySelector('[data-test-selector="chat-scrollable-
 
 // popup window can suck my big black cock
 document.body.querySelector('[data-a-target="chat-user-card"]').style.setProperty('right', '100px');
+document.body.querySelector('[data-a-target="chat-user-card"]').style.setProperty('top', '80px');
 document.body.querySelector('[data-a-target="chat-user-card"]').style.setProperty('width', '60%', 'important');
 
 const config = { attributes: true, childList: true, subtree: true };
@@ -35,6 +36,7 @@ filterButton.style.padding = "0px 10px";
 filterButton.style.borderRadius = "0.4rem";
 filterButton.style.height = "3rem";
 filterButton.style.alignSelf = "auto";
+filterButton.style.color = "#262626";
 
 filterButton.onclick = () => {
     observer.disconnect();
