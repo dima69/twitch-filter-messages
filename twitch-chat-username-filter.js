@@ -20,7 +20,6 @@ const callback = function(mutationsList, observer) {
                 // @@@try other querySelectors
                 if (!asd.querySelector(`[data-a-user="${convict_username}"]`)) {
                     asd.style.display = 'none';
-                    asd.style.visibility = 'hidden';
                 }
             }
         }
@@ -48,7 +47,7 @@ filterButton.onclick = () => {
         // use removeProperty("display") instead? but removing whole attribute should be faster, no?
         element.removeAttribute('style');
     }
-    userMessagePosition.scrollIntoView({block: 'center', behavior: 'smooth'});
+    document.getElementsByClassName("simplebar-scroll-content")[0].scrollTo({top: userMessagePosition, behavior: "auto"});
     return;
 }
 
@@ -76,19 +75,17 @@ function addRemoveFilterButton(e) {
 function userMessagesFilterHandler(event) {
     // @@@ fix for single click or double click
     if (event.target.dataset.testSelector === "message-username") {
-        userMessagePosition = event.target;
+        userMessagePosition = document.getElementsByClassName("simplebar-scroll-content")[0].scrollTop;
         observer.observe(targetNode, config);
         convict_username = event.target.dataset.aUser;
         for (let element of targetNode.querySelectorAll('[data-test-selector="chat-line-message"]')) {
             if (!element.querySelector(`[data-a-user="${convict_username}"]`)) {
                 element.style.display = 'none';
-                element.style.visibility = 'hidden';
             }
         }
         for (let element of targetNode.querySelectorAll('[data-test-selector="user-notice-line"]')) {
             if (!element.querySelector(`[data-a-user="${convict_username}"]`)) {
                 element.style.display = 'none';
-                element.style.visibility = 'hidden';
             }
         }
         addRemoveFilterButton();
